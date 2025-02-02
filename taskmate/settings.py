@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+# import django_heroku
 from pathlib import Path
+import os
+
+DEBUG = os.getenv("DEBUG", "False").lower() in ["true", "1"]
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,7 +137,7 @@ CRISPY_TEMPLATE_PACK= 'bootstrap4'
 LOGIN_REDIRECT_URL = "todolist"
 
 LOGIN_URL = "login"
-
+django = django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
